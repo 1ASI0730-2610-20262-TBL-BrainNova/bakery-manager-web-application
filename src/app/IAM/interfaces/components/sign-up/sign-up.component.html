@@ -1,0 +1,169 @@
+<div class="sign-up-container">
+
+  <div class="sign-up-card">
+
+    <div class="sign-up-header">
+      <div class="logo-wrapper">
+        <span class="logo-icon">🍞</span>
+        <span class="logo-text">BakeryManager</span>
+      </div>
+      <h1 class="sign-up-title">Create your account</h1>
+      <p class="sign-up-subtitle">Start managing your bakery smarter</p>
+    </div>
+
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="sign-up-form" novalidate>
+
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="firstName" class="form-label">First name</label>
+          <input
+            id="firstName"
+            type="text"
+            formControlName="firstName"
+            placeholder="Pedro"
+            class="form-input"
+            [class.input-error]="isFieldInvalid('firstName')"
+          />
+          @if (isFieldInvalid('firstName')) {
+            <span class="error-text">
+              @if (firstNameControl?.errors?.['required']) { First name is required. }
+              @else { Min. 2 characters. }
+            </span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="lastName" class="form-label">Last name</label>
+          <input
+            id="lastName"
+            type="text"
+            formControlName="lastName"
+            placeholder="Ramos"
+            class="form-input"
+            [class.input-error]="isFieldInvalid('lastName')"
+          />
+          @if (isFieldInvalid('lastName')) {
+            <span class="error-text">
+              @if (lastNameControl?.errors?.['required']) { Last name is required. }
+              @else { Min. 2 characters. }
+            </span>
+          }
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email" class="form-label">Email address</label>
+        <div class="input-wrapper">
+          <span class="input-icon">✉</span>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="you@bakery.com"
+            class="form-input with-icon"
+            [class.input-error]="isFieldInvalid('email')"
+          />
+        </div>
+        @if (isFieldInvalid('email')) {
+          <span class="error-text">
+            @if (emailControl?.errors?.['required']) { Email is required. }
+            @else { Please enter a valid email. }
+          </span>
+        }
+      </div>
+
+      <!-- Rol -->
+      <div class="form-group">
+        <label for="role" class="form-label">Your role</label>
+        <select id="role" formControlName="role" class="form-select">
+          @for (role of roles; track role.value) {
+            <option [value]="role.value">{{ role.label }}</option>
+          }
+        </select>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password" class="form-label">Password</label>
+        <div class="input-wrapper">
+          <span class="input-icon">🔒</span>
+          <input
+            id="password"
+            [type]="showPassword() ? 'text' : 'password'"
+            formControlName="password"
+            placeholder="Min. 8 characters"
+            class="form-input with-icon"
+            [class.input-error]="isFieldInvalid('password')"
+          />
+          <button type="button" class="toggle-password" (click)="togglePassword()">
+            {{ showPassword() ? '🙈' : '👁' }}
+          </button>
+        </div>
+        @if (isFieldInvalid('password')) {
+          <span class="error-text">
+            @if (passwordControl?.errors?.['required']) { Password is required. }
+            @else { Min. 8 characters. }
+          </span>
+        }
+      </div>
+
+      <!-- Confirm Password -->
+      <div class="form-group">
+        <label for="confirmPassword" class="form-label">Confirm password</label>
+        <div class="input-wrapper">
+          <span class="input-icon">🔒</span>
+          <input
+            id="confirmPassword"
+            [type]="showConfirmPassword() ? 'text' : 'password'"
+            formControlName="confirmPassword"
+            placeholder="Repeat your password"
+            class="form-input with-icon"
+            [class.input-error]="passwordMismatch"
+          />
+          <button type="button" class="toggle-password" (click)="toggleConfirmPassword()">
+            {{ showConfirmPassword() ? '🙈' : '👁' }}
+          </button>
+        </div>
+        @if (passwordMismatch) {
+          <span class="error-text">Passwords do not match.</span>
+        }
+      </div>
+
+      <!-- Mensajes -->
+      @if (errorMessage()) {
+        <div class="alert-error">
+          <span>⚠</span>
+          <span>{{ errorMessage() }}</span>
+        </div>
+      }
+
+      @if (successMessage()) {
+        <div class="alert-success">
+          <span>✓</span>
+          <span>{{ successMessage() }}</span>
+        </div>
+      }
+
+      <!-- Submit -->
+      <button type="submit" class="btn-submit" [disabled]="isLoading()">
+        @if (isLoading()) {
+          <span class="spinner"></span>
+          <span>Creating account...</span>
+        } @else {
+          <span>Create Account</span>
+        }
+      </button>
+
+    </form>
+
+    <div class="sign-up-footer">
+      <p>Already have an account?
+        <a routerLink="/sign-in" class="link">Sign in</a>
+      </p>
+    </div>
+
+  </div>
+
+</div>

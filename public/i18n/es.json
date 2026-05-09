@@ -1,10 +1,12 @@
 {
   "option": {
     "home": "Inicio",
-    "about": "Acerca de"
+    "about": "Nosotros",
+    "sign-in": "Iniciar Sesión",
+    "sign-up": "Registrarse"
   },
   "about": {
-    "title": "Acerca de nosotros",
+    "title": "Sobre nosotros",
     "content": "BakeryManager es una solución para las necesidades de tu panadería."
   },
   "home": {
@@ -14,11 +16,76 @@
   "page-not-found": {
     "title": "Página no encontrada",
     "content": "La ruta <strong>{{ invalid_path }}</strong> no es válida.",
-    "go-home": "Ir a Inicio"
+    "go-home": "Ir al inicio"
   },
   "footer": {
     "rights": "Todos los derechos reservados.",
     "powered-by": "Desarrollado con",
     "and": "y"
+  },
+  "sign-in": {
+    "title": "Bienvenido de vuelta",
+    "subtitle": "Inicia sesión para gestionar tu panadería",
+    "email": "Correo electrónico",
+    "email-placeholder": "tu@panaderia.com",
+    "password": "Contraseña",
+    "password-placeholder": "Mín. 8 caracteres",
+    "submit": "Iniciar Sesión",
+    "loading": "Iniciando sesión...",
+    "no-account": "¿No tienes una cuenta?",
+    "create-one": "Créala aquí",
+    "errors": {
+      "email-required": "El correo es obligatorio.",
+      "email-invalid": "Ingresa un correo válido.",
+      "password-required": "La contraseña es obligatoria.",
+      "password-min": "La contraseña debe tener al menos 8 caracteres.",
+      "invalid-credentials": "Correo o contraseña incorrectos.",
+      "no-connection": "No se puede conectar al servidor. Intenta de nuevo.",
+      "unexpected": "Ocurrió un error inesperado. Intenta de nuevo."
+    },
+    "panel": {
+      "title": "Gestiona tu panadería con inteligencia real",
+      "subtitle": "Monitoreo IoT · Alertas · Analítica · Multi-sede"
+    }
+  },
+  "sign-up": {
+    "title": "Crea tu cuenta",
+    "subtitle": "Empieza a gestionar tu panadería de forma inteligente",
+    "first-name": "Nombre",
+    "first-name-placeholder": "Luis",
+    "last-name": "Apellido",
+    "last-name-placeholder": "Tufiño",
+    "email": "Correo electrónico",
+    "email-placeholder": "tu@panaderia.com",
+    "role": "Tu rol",
+    "password": "Contraseña",
+    "password-placeholder": "Mín. 8 caracteres",
+    "confirm-password": "Confirmar contraseña",
+    "confirm-password-placeholder": "Repite tu contraseña",
+    "submit": "Crear Cuenta",
+    "loading": "Creando cuenta...",
+    "have-account": "¿Ya tienes una cuenta?",
+    "sign-in-link": "Inicia sesión",
+    "success": "¡Cuenta creada! Redirigiendo al inicio de sesión...",
+    "roles": {
+      "owner": "Dueño / Administrador",
+      "administrator": "Encargado de Sede",
+      "operational-staff": "Personal Operativo"
+    },
+    "errors": {
+      "first-name-required": "El nombre es obligatorio.",
+      "first-name-min": "Mín. 2 caracteres.",
+      "last-name-required": "El apellido es obligatorio.",
+      "last-name-min": "Mín. 2 caracteres.",
+      "email-required": "El correo es obligatorio.",
+      "email-invalid": "Ingresa un correo válido.",
+      "password-required": "La contraseña es obligatoria.",
+      "password-min": "Mín. 8 caracteres.",
+      "confirm-required": "Confirma tu contraseña.",
+      "password-mismatch": "Las contraseñas no coinciden.",
+      "email-taken": "Este correo ya está registrado.",
+      "no-connection": "No se puede conectar al servidor. Intenta de nuevo.",
+      "unexpected": "Ocurrió un error inesperado. Intenta de nuevo."
+    }
   }
 }

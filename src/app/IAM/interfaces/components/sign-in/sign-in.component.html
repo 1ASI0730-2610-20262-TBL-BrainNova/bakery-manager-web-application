@@ -1,0 +1,127 @@
+<div class="sign-in-container">
+
+  <div class="sign-in-card">
+
+    <!-- Logo y título -->
+    <div class="sign-in-header">
+      <div class="logo-wrapper">
+        <span class="logo-icon">🍞</span>
+        <span class="logo-text">BakeryManager</span>
+      </div>
+      <h1 class="sign-in-title">Welcome back</h1>
+      <p class="sign-in-subtitle">Sign in to manage your bakery</p>
+    </div>
+
+    <!-- Formulario -->
+    <form [formGroup]="signInForm" (ngSubmit)="onSubmit()" class="sign-in-form" novalidate>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email" class="form-label">Email address</label>
+        <div class="input-wrapper">
+          <span class="input-icon">✉</span>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="you@bakery.com"
+            class="form-input"
+            [class.input-error]="isFieldInvalid('email')"
+            autocomplete="email"
+          />
+        </div>
+        @if (isFieldInvalid('email')) {
+          <span class="error-text">
+            @if (emailControl?.errors?.['required']) { Email is required. }
+            @else if (emailControl?.errors?.['email']) { Please enter a valid email. }
+          </span>
+        }
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password" class="form-label">Password</label>
+        <div class="input-wrapper">
+          <span class="input-icon">🔒</span>
+          <input
+            id="password"
+            [type]="showPassword() ? 'text' : 'password'"
+            formControlName="password"
+            placeholder="Min. 8 characters"
+            class="form-input"
+            [class.input-error]="isFieldInvalid('password')"
+            autocomplete="current-password"
+          />
+          <button
+            type="button"
+            class="toggle-password"
+            (click)="togglePasswordVisibility()"
+            [attr.aria-label]="showPassword() ? 'Hide password' : 'Show password'"
+          >
+            {{ showPassword() ? '🙈' : '👁' }}
+          </button>
+        </div>
+        @if (isFieldInvalid('password')) {
+          <span class="error-text">
+            @if (passwordControl?.errors?.['required']) { Password is required. }
+            @else if (passwordControl?.errors?.['minlength']) { Password must be at least 8 characters. }
+          </span>
+        }
+      </div>
+
+      <!-- Error general -->
+      @if (errorMessage()) {
+        <div class="alert-error">
+          <span>⚠</span>
+          <span>{{ errorMessage() }}</span>
+        </div>
+      }
+
+      <!-- Submit -->
+      <button
+        type="submit"
+        class="btn-submit"
+        [disabled]="isLoading()"
+      >
+        @if (isLoading()) {
+          <span class="spinner"></span>
+          <span>Signing in...</span>
+        } @else {
+          <span>Sign In</span>
+        }
+      </button>
+
+    </form>
+
+    <!-- Footer -->
+    <div class="sign-in-footer">
+      <p>Don't have an account?
+        <a routerLink="/sign-up" class="link">Create one</a>
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Panel lateral decorativo -->
+  <div class="sign-in-panel">
+    <div class="panel-content">
+      <h2>Manage your bakery with <em>real intelligence</em></h2>
+      <p>IoT monitoring · Incident alerts · Analytics · Multi-branch</p>
+      <div class="panel-stats">
+        <div class="stat">
+          <span class="stat-value">220°C</span>
+          <span class="stat-label">Main Oven · Operational</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">6°C</span>
+          <span class="stat-label">Cold Chamber · Check</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">62%</span>
+          <span class="stat-label">Room Humidity · Normal</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
