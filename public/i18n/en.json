@@ -20,5 +20,24 @@
     "rights": "All rights reserved.",
     "powered-by": "Powered by",
     "and": "and"
+  },
+  "inventory": {
+    "title": "Inventory Management",
+    "form": {
+      "title": "Register New Supply",
+      "name": "Supply Name",
+      "description": "Description",
+      "stock": "Initial Stock",
+      "unit": "Unit of Measure",
+      "min_stock": "Minimum Stock for Alert",
+      "hint": "You will be notified when stock is equal to or less than this value.",
+      "button": "Add to Inventory"
+    },
+    "table": {
+      "supply": "Supply",
+      "actual_stock": "Current Stock",
+      "unit": "Unit",
+      "status": "Status"
+}
   }
 }
