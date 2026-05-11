@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { InventoryItemForm } from '../../components/inventory-item-form/inventory-item-form';
 import { InventoryItemList } from '../../components/inventory-item-list/inventory-item-list';
 import { InventoryItem } from '../../../domain/model/inventory-item';
+import { TranslateModule } from '@ngx-translate/core';
 
 /**
  * InventoryManagement is a standalone Angular component that orchestrates
@@ -24,9 +25,13 @@ import { InventoryItem } from '../../../domain/model/inventory-item';
  * - Real-time synchronization with server
  */
 @Component({
-  selector: 'app-inventory-management-management',
+  selector: 'app-inventory-management',
   standalone: true,
-  imports: [InventoryItemForm, InventoryItemList],
+  imports: [
+    InventoryItemForm,
+    InventoryItemList,
+    TranslateModule,
+  ],
   templateUrl: './inventory-management.html',
   styleUrl: './inventory-management.css',
 })
@@ -36,6 +41,4 @@ export class InventoryManagement {
    * This will be populated from user input via the form component.
    */
   inventoryItems: InventoryItem[] = [];
-
-  constructor() {}
 }
