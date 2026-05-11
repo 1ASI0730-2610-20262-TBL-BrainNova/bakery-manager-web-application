@@ -40,9 +40,9 @@ export class Incident {
    * Cancellation date of the incident.
    * @defaultValue null
    */
-  private _cancelledAt: Date | null;
+  private _canceledAt: Date | null;
 
-  constructor(incident: { id: number; title: string; description: string; status: IncidentStatus; detectedAt: Date; confirmedAt: Date | null; resolvedAt: Date | null; cancelledAt: Date | null }) {
+  constructor(incident: { id: number; title: string; description: string; status: IncidentStatus; detectedAt: Date; confirmedAt: Date | null; resolvedAt: Date | null; canceledAt: Date | null }) {
     this._id = incident.id;
     this._title = incident.title;
     this._description = incident.description;
@@ -50,7 +50,7 @@ export class Incident {
     this._detectedAt = incident.detectedAt;
     this._confirmedAt = incident.confirmedAt;
     this._resolvedAt = incident.resolvedAt;
-    this._cancelledAt = incident.cancelledAt;
+    this._canceledAt = incident.canceledAt;
   }
 
   /**
@@ -74,7 +74,7 @@ export class Incident {
    */
   cancel(): void {
     this._status = IncidentStatus.CANCELED;
-    this._cancelledAt = new Date();
+    this._canceledAt = new Date();
   }
 
   /**
@@ -95,7 +95,7 @@ export class Incident {
    * Checks if the incident has been canceled.
    */
   isCanceled(): boolean {
-    return this._cancelledAt !== null && this._status === IncidentStatus.CANCELED;
+    return this._canceledAt !== null && this._status === IncidentStatus.CANCELED;
   }
 
   get id(): number {
@@ -154,11 +154,11 @@ export class Incident {
     this._resolvedAt = value;
   }
 
-  get cancelledAt(): Date | null {
-    return this._cancelledAt;
+  get canceledAt(): Date | null {
+    return this._canceledAt;
   }
 
-  set cancelledAt(value: Date | null) {
-    this._cancelledAt = value;
+  set canceledAt(value: Date | null) {
+    this._canceledAt = value;
   }
 }
