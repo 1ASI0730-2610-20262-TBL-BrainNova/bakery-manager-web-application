@@ -32,7 +32,9 @@
       "unit": "Unidad de Medida",
       "min_stock": "Stock Mínimo para Alerta",
       "hint": "Se notificará cuando el stock sea igual o menor a este valor.",
-      "button": "Agregar al Inventario"
+      "button": "Agregar al Inventario",
+      "open": "Agregar Ítem",
+      "close": "Cerrar Formulario"
     },
     "table": {
       "supply": "Insumo",

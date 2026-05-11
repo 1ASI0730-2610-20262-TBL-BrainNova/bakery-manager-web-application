@@ -32,7 +32,9 @@
       "unit": "Unit of Measure",
       "min_stock": "Minimum Stock for Alert",
       "hint": "You will be notified when stock is equal to or less than this value.",
-      "button": "Add to Inventory"
+      "button": "Add to Inventory",
+      "open": "Add Item",
+      "close": "Close Form"
     },
     "table": {
       "supply": "Supply",
