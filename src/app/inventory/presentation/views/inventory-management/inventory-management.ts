@@ -58,7 +58,7 @@ export class InventoryManagement implements OnInit {
         this.loadInventory();
         this.isFormVisible = false;
       },
-      error: (err) => alert('No se pudo registrar en la nube, bb. Revisa el endpoint.'),
+      error: (err) => alert('No se pudo registrar en la nube'),
     });
   }
 }
