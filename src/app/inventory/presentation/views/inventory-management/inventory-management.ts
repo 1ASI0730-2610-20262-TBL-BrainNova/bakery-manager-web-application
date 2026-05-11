@@ -3,7 +3,7 @@ import { InventoryItemForm } from '../../components/inventory-item-form/inventor
 import { InventoryItemList } from '../../components/inventory-item-list/inventory-item-list';
 
 @Component({
-  selector: 'app-inventory-management',
+  selector: 'app-inventory-management-management',
   standalone: true,
   imports: [InventoryItemForm, InventoryItemList],
   templateUrl: './inventory-management.html',
