@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core'; // Unificamos los imports de core
 import { CommonModule } from '@angular/common';
 import { InventoryItemForm } from '../../components/inventory-item-form/inventory-item-form';
 import { InventoryItemList } from '../../components/inventory-item-list/inventory-item-list';
@@ -6,30 +6,8 @@ import { InventoryItem } from '../../../domain/model/inventory-item';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { InventoryService } from '../../../infrastructure/inventory.services';
 
-/**
- * InventoryManagement is a standalone Angular component that orchestrates
- * the inventory management system for BakeryManager.
- *
- * Component Responsibilities:
- * - Serves as a container for inventory-related components and views
- * - Manages the communication between the InventoryItemForm and InventoryItemList components
- * - Maintains the state of inventory items in memory
- * - Handles the creation of new inventory items through form submission
- * - Provides toggle functionality for the form visibility
- *
- * Component Structure:
- * - Header with translated title
- * - FAB button to toggle form visibility
- * - Conditional form section: Contains the InventoryItemForm for adding new items
- * - List section: Contains the InventoryItemList displaying all items
- *
- * Future Enhancements:
- * - Integration with backend API for persistence
- * - Search and filter functionality
- * - Edit and delete operations for existing items
- * - Real-time synchronization with server
- */
 @Component({
   selector: 'app-inventory-management',
   standalone: true,
@@ -44,38 +22,43 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './inventory-management.html',
   styleUrl: './inventory-management.css',
 })
-export class InventoryManagement {
-  /**
-   * Array to store all inventory items currently managed by the system.
-   * This will be populated from user input via the form component.
-   */
+export class InventoryManagement implements OnInit {
   inventoryItems: InventoryItem[] = [];
-
-  /**
-   * Controls the visibility of the inventory item form.
-   * When true, the form is displayed; when false, it's hidden.
-   */
   isFormVisible = false;
 
+  constructor(private inventoryService: InventoryService) {}
+
   /**
-   * Toggles the visibility of the inventory item form.
-   * This method is called when the FAB button is clicked.
+   * When the component starts, we retrieve the data from the cloud.
    */
+  ngOnInit(): void {
+    this.loadInventory();
+  }
+
+  /**
+   * Call the service to get the list of supplies.
+   */
+  loadInventory(): void {
+    this.inventoryService.getAllItems().subscribe({
+      next: (items) => {
+        this.inventoryItems = items;
+        console.log('Inventario cargado:', items);
+      },
+      error: (err) => console.error('Error cargando el inventario:', err),
+    });
+  }
+
   toggleForm(): void {
     this.isFormVisible = !this.isFormVisible;
   }
 
-  /**
-   * Adds a new inventory item to the collection.
-   * This method is called when the InventoryItemForm emits an itemAdded event.
-   *
-   * @param item - The new inventory item to add (without id, as it will be assigned)
-   */
   addItem(item: Omit<InventoryItem, 'id'>): void {
-   const newItem: InventoryItem = {
-      ...item,
-      id: Date.now(),    };
-
-    this.inventoryItems = [...this.inventoryItems, newItem];
+    this.inventoryService.createItem(item).subscribe({
+      next: () => {
+        this.loadInventory();
+        this.isFormVisible = false;
+      },
+      error: (err) => alert('No se pudo registrar en la nube, bb. Revisa el endpoint.'),
+    });
   }
 }
