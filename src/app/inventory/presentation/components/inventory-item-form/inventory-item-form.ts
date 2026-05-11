@@ -53,7 +53,7 @@ export class InventoryItemForm {
   @Output() itemAdded = new EventEmitter<Omit<InventoryItem, 'id'>>();
 
   inventoryForm: FormGroup;
-  unitOptions = ['kg', 'litres', 'unidades', 'gramos'];
+  unitOptions = ['kg', 'litros', 'unidades', 'gramos'];
 
   /**
    * Constructs an instance of the class and initializes the inventory form.

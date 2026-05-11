@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'; // Unificamos los imports de core
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InventoryItemForm } from '../../components/inventory-item-form/inventory-item-form';
 import { InventoryItemList } from '../../components/inventory-item-list/inventory-item-list';
@@ -52,13 +52,35 @@ export class InventoryManagement implements OnInit {
     this.isFormVisible = !this.isFormVisible;
   }
 
-  addItem(item: Omit<InventoryItem, 'id'>): void {
-    this.inventoryService.createItem(item).subscribe({
-      next: () => {
+  addItem(item: any): void {
+    console.log('1. Datos recibidos del formulario:', item);
+
+    // Si el item llega vacío o undefined, aquí saltará el error
+    if (!item) {
+      console.error('¡Papi, el formulario mandó un objeto vacío!');
+      return;
+    }
+
+    const itemToSend = {
+      name: item.name,
+      description: item.description,
+      quantity: Number(item.quantity),
+      unit: item.unit,
+      minStock: Number(item.minStock),
+    };
+
+    console.log('2. Intentando enviar a MockAPI:', itemToSend);
+
+    this.inventoryService.createItem(itemToSend as any).subscribe({
+      next: (response) => {
+        console.log('3. ¡Éxito en la nube!:', response);
         this.loadInventory();
         this.isFormVisible = false;
       },
-      error: (err) => alert('No se pudo registrar en la nube'),
+      error: (err) => {
+        console.error('4. Error detallado que bloquea el envío:', err);
+        alert('Error: no sé puede subir a la nube');
+      },
     });
   }
 }
