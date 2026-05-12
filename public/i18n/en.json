@@ -36,6 +36,7 @@
       "button": "Add to Inventory",
       "open": "Add Item",
       "close": "Close Form",
+
       "errors": {
         "required": "Name is required ."
       }
@@ -52,6 +53,12 @@
     },
     "errors": {
       "required": "This field is required."
+    },
+    "units": {
+      "kg": "kg",
+      "litros": "liters",
+      "unidades": "units",
+      "gramos": "grams"
     }
   }
 }

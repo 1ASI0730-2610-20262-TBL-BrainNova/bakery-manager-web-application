@@ -48,6 +48,12 @@
     },
     "errors": {
       "required": "El nombre es obligatorio."
+    },
+    "units": {
+      "kg": "kg",
+      "litros": "litros",
+      "unidades": "unidades",
+      "gramos": "gramos"
     }
   }
 }

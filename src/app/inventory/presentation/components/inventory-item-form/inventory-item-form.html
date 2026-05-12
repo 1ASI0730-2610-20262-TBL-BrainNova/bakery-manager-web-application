@@ -26,7 +26,7 @@
         <mat-label>{{ 'inventory.form.unit' | translate }}</mat-label>
         <mat-select formControlName="unit">
           <mat-option *ngFor="let unit of unitOptions" [value]="unit">
-            {{ unit }}
+            {{ 'inventory.units.' + unit | translate }}
           </mat-option>
         </mat-select>
       </mat-form-field>
