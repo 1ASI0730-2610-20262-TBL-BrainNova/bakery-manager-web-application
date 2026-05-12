@@ -2,29 +2,26 @@
 
   <div class="sign-in-card">
 
-    <!-- Logo y título -->
     <div class="sign-in-header">
       <div class="logo-wrapper">
         <span class="logo-icon">🍞</span>
         <span class="logo-text">BakeryManager</span>
       </div>
-      <h1 class="sign-in-title">Welcome back</h1>
-      <p class="sign-in-subtitle">Sign in to manage your bakery</p>
+      <h1 class="sign-in-title">{{ 'sign-in.title' | translate }}</h1>
+      <p class="sign-in-subtitle">{{ 'sign-in.subtitle' | translate }}</p>
     </div>
 
-    <!-- Formulario -->
     <form [formGroup]="signInForm" (ngSubmit)="onSubmit()" class="sign-in-form" novalidate>
 
-      <!-- Email -->
       <div class="form-group">
-        <label for="email" class="form-label">Email address</label>
+        <label for="email" class="form-label">{{ 'sign-in.email' | translate }}</label>
         <div class="input-wrapper">
           <span class="input-icon">✉</span>
           <input
             id="email"
             type="email"
             formControlName="email"
-            placeholder="you@bakery.com"
+            [placeholder]="'sign-in.email-placeholder' | translate"
             class="form-input"
             [class.input-error]="isFieldInvalid('email')"
             autocomplete="email"
@@ -32,22 +29,21 @@
         </div>
         @if (isFieldInvalid('email')) {
           <span class="error-text">
-            @if (emailControl?.errors?.['required']) { Email is required. }
-            @else if (emailControl?.errors?.['email']) { Please enter a valid email. }
+            @if (emailControl?.errors?.['required']) { {{ 'sign-in.errors.email-required' | translate }} }
+            @else if (emailControl?.errors?.['email']) { {{ 'sign-in.errors.email-invalid' | translate }} }
           </span>
         }
       </div>
 
-      <!-- Password -->
       <div class="form-group">
-        <label for="password" class="form-label">Password</label>
+        <label for="password" class="form-label">{{ 'sign-in.password' | translate }}</label>
         <div class="input-wrapper">
           <span class="input-icon">🔒</span>
           <input
             id="password"
             [type]="showPassword() ? 'text' : 'password'"
             formControlName="password"
-            placeholder="Min. 8 characters"
+            [placeholder]="'sign-in.password-placeholder' | translate"
             class="form-input"
             [class.input-error]="isFieldInvalid('password')"
             autocomplete="current-password"
@@ -63,50 +59,42 @@
         </div>
         @if (isFieldInvalid('password')) {
           <span class="error-text">
-            @if (passwordControl?.errors?.['required']) { Password is required. }
-            @else if (passwordControl?.errors?.['minlength']) { Password must be at least 8 characters. }
+            @if (passwordControl?.errors?.['required']) { {{ 'sign-in.errors.password-required' | translate }} }
+            @else if (passwordControl?.errors?.['minlength']) { {{ 'sign-in.errors.password-min' | translate }} }
           </span>
         }
       </div>
 
-      <!-- Error general -->
       @if (errorMessage()) {
         <div class="alert-error">
           <span>⚠</span>
-          <span>{{ errorMessage() }}</span>
+          <span>{{ errorMessage() | translate }}</span>
         </div>
       }
 
-      <!-- Submit -->
-      <button
-        type="submit"
-        class="btn-submit"
-        [disabled]="isLoading()"
-      >
+      <button type="submit" class="btn-submit" [disabled]="isLoading()">
         @if (isLoading()) {
           <span class="spinner"></span>
-          <span>Signing in...</span>
+          <span>{{ 'sign-in.loading' | translate }}</span>
         } @else {
-          <span>Sign In</span>
+          <span>{{ 'sign-in.submit' | translate }}</span>
         }
       </button>
 
     </form>
 
-    <!-- Footer -->
     <div class="sign-in-footer">
-      <p>Don't have an account?
-        <a routerLink="/sign-up" class="link">Create one</a>
+      <p>{{ 'sign-in.no-account' | translate }}
+        <a routerLink="/sign-up" class="link">{{ 'sign-in.create-one' | translate }}</a>
       </p>
     </div>
 
   </div>
 
-  <!-- Panel lateral decorativo -->
   <div class="sign-in-panel">
     <div class="panel-content">
-      <h2>Manage your bakery with <em>real intelligence</em></h2>
-      <p>IoT monitoring · Incident alerts · Analytics · Multi-branch</p>
+      <h2>{{ 'sign-in.panel.title' | translate }}</h2>
+      <p>{{ 'sign-in.panel.subtitle' | translate }}</p>
       <div class="panel-stats">
         <div class="stat">
           <span class="stat-value">220°C</span>

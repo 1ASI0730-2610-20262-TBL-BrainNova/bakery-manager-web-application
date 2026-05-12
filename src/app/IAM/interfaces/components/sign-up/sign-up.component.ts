@@ -1,7 +1,15 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControl, ValidationErrors } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+  AbstractControl,
+  ValidationErrors,
+} from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { AuthenticationService } from '../../../application/services/authentication.service';
 import { SignUpRequestDto } from '../../../application/dtos/sign-up.request.dto';
 import { RoleType } from '../../../domain/model/enums/role-type.enum';
@@ -9,12 +17,11 @@ import { RoleType } from '../../../domain/model/enums/role-type.enum';
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, TranslatePipe],
   templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.css']
+  styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent {
-
   signUpForm: FormGroup;
   isLoading = signal(false);
   errorMessage = signal('');
@@ -23,23 +30,26 @@ export class SignUpComponent {
   showConfirmPassword = signal(false);
 
   readonly roles = [
-    { value: RoleType.OWNER, label: 'Owner / Administrator' },
-    { value: RoleType.ADMINISTRATOR, label: 'Branch Manager' },
-    { value: RoleType.OPERATIONAL_STAFF, label: 'Operational Staff' }
+    { value: RoleType.OWNER, labelKey: 'sign-up.roles.owner' },
+    { value: RoleType.ADMINISTRATOR, labelKey: 'sign-up.roles.administrator' },
+    { value: RoleType.OPERATIONAL_STAFF, labelKey: 'sign-up.roles.operational-staff' },
   ];
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
   ) {
-    this.signUpForm = this.fb.group({
-      firstName: ['', [Validators.required, Validators.minLength(2)]],
-      lastName: ['', [Validators.required, Validators.minLength(2)]],
-      email: ['', [Validators.required, Validators.email]],
-      role: [RoleType.OPERATIONAL_STAFF, Validators.required],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      confirmPassword: ['', Validators.required]
-    }, { validators: this.passwordMatchValidator });
+    this.signUpForm = this.fb.group(
+      {
+        firstName: ['', [Validators.required, Validators.minLength(2)]],
+        lastName: ['', [Validators.required, Validators.minLength(2)]],
+        email: ['', [Validators.required, Validators.email]],
+        role: [RoleType.OPERATIONAL_STAFF, Validators.required],
+        password: ['', [Validators.required, Validators.minLength(8)]],
+        confirmPassword: ['', Validators.required],
+      },
+      { validators: this.passwordMatchValidator },
+    );
   }
 
   passwordMatchValidator(group: AbstractControl): ValidationErrors | null {
@@ -63,29 +73,33 @@ export class SignUpComponent {
       lastName: this.signUpForm.value.lastName,
       email: this.signUpForm.value.email,
       password: this.signUpForm.value.password,
-      role: this.signUpForm.value.role
+      role: this.signUpForm.value.role,
     };
 
     this.authService.signUp(request).subscribe({
       next: () => {
         this.isLoading.set(false);
-        this.successMessage.set('Account created! Redirecting to sign in...');
+        this.successMessage.set('sign-up.success');
       },
       error: (error) => {
         this.isLoading.set(false);
         if (error.status === 409) {
-          this.errorMessage.set('This email is already registered.');
+          this.errorMessage.set('sign-up.errors.email-taken');
         } else if (error.status === 0) {
-          this.errorMessage.set('Cannot connect to server. Please try again.');
+          this.errorMessage.set('sign-up.errors.no-connection');
         } else {
-          this.errorMessage.set('An unexpected error occurred. Please try again.');
+          this.errorMessage.set('sign-up.errors.unexpected');
         }
-      }
+      },
     });
   }
 
-  togglePassword(): void { this.showPassword.update(v => !v); }
-  toggleConfirmPassword(): void { this.showConfirmPassword.update(v => !v); }
+  togglePassword(): void {
+    this.showPassword.update((v) => !v);
+  }
+  toggleConfirmPassword(): void {
+    this.showConfirmPassword.update((v) => !v);
+  }
 
   isFieldInvalid(field: string): boolean {
     const control = this.signUpForm.get(field);
@@ -99,8 +113,16 @@ export class SignUpComponent {
     );
   }
 
-  get firstNameControl() { return this.signUpForm.get('firstName'); }
-  get lastNameControl() { return this.signUpForm.get('lastName'); }
-  get emailControl() { return this.signUpForm.get('email'); }
-  get passwordControl() { return this.signUpForm.get('password'); }
+  get firstNameControl() {
+    return this.signUpForm.get('firstName');
+  }
+  get lastNameControl() {
+    return this.signUpForm.get('lastName');
+  }
+  get emailControl() {
+    return this.signUpForm.get('email');
+  }
+  get passwordControl() {
+    return this.signUpForm.get('password');
+  }
 }

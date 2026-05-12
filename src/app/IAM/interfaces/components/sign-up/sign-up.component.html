@@ -7,93 +7,89 @@
         <span class="logo-icon">🍞</span>
         <span class="logo-text">BakeryManager</span>
       </div>
-      <h1 class="sign-up-title">Create your account</h1>
-      <p class="sign-up-subtitle">Start managing your bakery smarter</p>
+      <h1 class="sign-up-title">{{ 'sign-up.title' | translate }}</h1>
+      <p class="sign-up-subtitle">{{ 'sign-up.subtitle' | translate }}</p>
     </div>
 
     <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="sign-up-form" novalidate>
 
-
       <div class="form-row">
         <div class="form-group">
-          <label for="firstName" class="form-label">First name</label>
+          <label for="firstName" class="form-label">{{ 'sign-up.first-name' | translate }}</label>
           <input
             id="firstName"
             type="text"
             formControlName="firstName"
-            placeholder="Pedro"
+            [placeholder]="'sign-up.first-name-placeholder' | translate"
             class="form-input"
             [class.input-error]="isFieldInvalid('firstName')"
           />
           @if (isFieldInvalid('firstName')) {
             <span class="error-text">
-              @if (firstNameControl?.errors?.['required']) { First name is required. }
-              @else { Min. 2 characters. }
+              @if (firstNameControl?.errors?.['required']) { {{ 'sign-up.errors.first-name-required' | translate }} }
+              @else { {{ 'sign-up.errors.first-name-min' | translate }} }
             </span>
           }
         </div>
 
         <div class="form-group">
-          <label for="lastName" class="form-label">Last name</label>
+          <label for="lastName" class="form-label">{{ 'sign-up.last-name' | translate }}</label>
           <input
             id="lastName"
             type="text"
             formControlName="lastName"
-            placeholder="Ramos"
+            [placeholder]="'sign-up.last-name-placeholder' | translate"
             class="form-input"
             [class.input-error]="isFieldInvalid('lastName')"
           />
           @if (isFieldInvalid('lastName')) {
             <span class="error-text">
-              @if (lastNameControl?.errors?.['required']) { Last name is required. }
-              @else { Min. 2 characters. }
+              @if (lastNameControl?.errors?.['required']) { {{ 'sign-up.errors.last-name-required' | translate }} }
+              @else { {{ 'sign-up.errors.last-name-min' | translate }} }
             </span>
           }
         </div>
       </div>
 
-      <!-- Email -->
       <div class="form-group">
-        <label for="email" class="form-label">Email address</label>
+        <label for="email" class="form-label">{{ 'sign-up.email' | translate }}</label>
         <div class="input-wrapper">
           <span class="input-icon">✉</span>
           <input
             id="email"
             type="email"
             formControlName="email"
-            placeholder="you@bakery.com"
+            [placeholder]="'sign-up.email-placeholder' | translate"
             class="form-input with-icon"
             [class.input-error]="isFieldInvalid('email')"
           />
         </div>
         @if (isFieldInvalid('email')) {
           <span class="error-text">
-            @if (emailControl?.errors?.['required']) { Email is required. }
-            @else { Please enter a valid email. }
+            @if (emailControl?.errors?.['required']) { {{ 'sign-up.errors.email-required' | translate }} }
+            @else { {{ 'sign-up.errors.email-invalid' | translate }} }
           </span>
         }
       </div>
 
-      <!-- Rol -->
       <div class="form-group">
-        <label for="role" class="form-label">Your role</label>
+        <label for="role" class="form-label">{{ 'sign-up.role' | translate }}</label>
         <select id="role" formControlName="role" class="form-select">
           @for (role of roles; track role.value) {
-            <option [value]="role.value">{{ role.label }}</option>
+            <option [value]="role.value">{{ role.labelKey | translate }}</option>
           }
         </select>
       </div>
 
-      <!-- Password -->
       <div class="form-group">
-        <label for="password" class="form-label">Password</label>
+        <label for="password" class="form-label">{{ 'sign-up.password' | translate }}</label>
         <div class="input-wrapper">
           <span class="input-icon">🔒</span>
           <input
             id="password"
             [type]="showPassword() ? 'text' : 'password'"
             formControlName="password"
-            placeholder="Min. 8 characters"
+            [placeholder]="'sign-up.password-placeholder' | translate"
             class="form-input with-icon"
             [class.input-error]="isFieldInvalid('password')"
           />
@@ -103,22 +99,21 @@
         </div>
         @if (isFieldInvalid('password')) {
           <span class="error-text">
-            @if (passwordControl?.errors?.['required']) { Password is required. }
-            @else { Min. 8 characters. }
+            @if (passwordControl?.errors?.['required']) { {{ 'sign-up.errors.password-required' | translate }} }
+            @else { {{ 'sign-up.errors.password-min' | translate }} }
           </span>
         }
       </div>
 
-      <!-- Confirm Password -->
       <div class="form-group">
-        <label for="confirmPassword" class="form-label">Confirm password</label>
+        <label for="confirmPassword" class="form-label">{{ 'sign-up.confirm-password' | translate }}</label>
         <div class="input-wrapper">
           <span class="input-icon">🔒</span>
           <input
             id="confirmPassword"
             [type]="showConfirmPassword() ? 'text' : 'password'"
             formControlName="confirmPassword"
-            placeholder="Repeat your password"
+            [placeholder]="'sign-up.confirm-password-placeholder' | translate"
             class="form-input with-icon"
             [class.input-error]="passwordMismatch"
           />
@@ -127,40 +122,38 @@
           </button>
         </div>
         @if (passwordMismatch) {
-          <span class="error-text">Passwords do not match.</span>
+          <span class="error-text">{{ 'sign-up.errors.password-mismatch' | translate }}</span>
         }
       </div>
 
-      <!-- Mensajes -->
       @if (errorMessage()) {
         <div class="alert-error">
           <span>⚠</span>
-          <span>{{ errorMessage() }}</span>
+          <span>{{ errorMessage() | translate }}</span>
         </div>
       }
 
       @if (successMessage()) {
         <div class="alert-success">
           <span>✓</span>
-          <span>{{ successMessage() }}</span>
+          <span>{{ successMessage() | translate }}</span>
         </div>
       }
 
-      <!-- Submit -->
       <button type="submit" class="btn-submit" [disabled]="isLoading()">
         @if (isLoading()) {
           <span class="spinner"></span>
-          <span>Creating account...</span>
+          <span>{{ 'sign-up.loading' | translate }}</span>
         } @else {
-          <span>Create Account</span>
+          <span>{{ 'sign-up.submit' | translate }}</span>
         }
       </button>
 
     </form>
 
     <div class="sign-up-footer">
-      <p>Already have an account?
-        <a routerLink="/sign-in" class="link">Sign in</a>
+      <p>{{ 'sign-up.have-account' | translate }}
+        <a routerLink="/sign-in" class="link">{{ 'sign-up.sign-in-link' | translate }}</a>
       </p>
     </div>
 
