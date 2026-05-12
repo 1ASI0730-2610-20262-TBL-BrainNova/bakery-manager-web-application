@@ -1,7 +1,11 @@
 {
   "option": {
     "home": "Inicio",
-    "about": "Acerca de"
+    "about": "Acerca de",
+    "dashboard": "Panel",
+    "production": "Producción",
+    "iot": "Monitoreo IoT",
+    "incident": "Incidente"
   },
   "about": {
     "title": "Acerca de nosotros",
@@ -20,5 +24,40 @@
     "rights": "Todos los derechos reservados.",
     "powered-by": "Desarrollado en",
     "and": "y"
+  }
+  ,
+  "production": {
+    "subtitle": "Monitorea en tiempo real los hornos en funcionamiento.",
+    "update": "Actualizar",
+    "shift": "Turno",
+    "ovens_in_operation": "Hornos en funcionamiento",
+    "average_efficiency": "Eficiencia promedio",
+    "active_alerts": "Alertas activas",
+    "started": "Iniciado",
+    "pending": "Pendiente",
+    "running": "En funcionamiento",
+    "warning": "Con advertencia",
+    "stopped": "Detenido",
+    "temperature": "Temperatura",
+    "humidity": "Humedad",
+    "electric_flow": "Flujo eléctrico",
+    "status": "Estado",
+    "setpoint": "Setpoint",
+    "high": "Alta",
+    "normal": "Normal",
+    "with_warning": "Con advertencia",
+    "production_by_product_week": "Producción por producto — semana",
+    "daily_production_last_7": "Producción diaria — últimos 7 días",
+    "general_summary": "Resumen general",
+    "last_update": "Última actualización",
+    "loading_title": "Cargando producción",
+    "loading_content": "Preparando el tablero de hornos",
+    "ovens_total": "Hornos totales",
+    "running_label": "En funcionamiento",
+    "active_label": "Activos",
+    "warning_label": "Con advertencia",
+    "in_observation": "En observación",
+    "stopped_label": "Detenido",
+    "inactives": "Inactivos"
   }
 }

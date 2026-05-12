@@ -1,7 +1,11 @@
 {
   "option": {
     "home": "Home",
-    "about": "About Us"
+    "about": "About Us",
+    "dashboard": "Dashboard",
+    "production": "Production",
+    "iot": "IOT Monitoring",
+    "incident": "Incident"
   },
   "about": {
     "title": "About us",
@@ -18,7 +22,42 @@
   },
   "footer": {
     "rights": "All rights reserved.",
-    "powered-by": "Powered by ",
+    "powered-by": "Powered by",
     "and": "and"
+  }
+  ,
+  "production": {
+    "subtitle": "Monitor ovens in real time.",
+    "update": "Update",
+    "shift": "Shift",
+    "ovens_in_operation": "Ovens in operation",
+    "average_efficiency": "Average efficiency",
+    "active_alerts": "Active alerts",
+    "started": "Started",
+    "pending": "Pending",
+    "running": "Running",
+    "warning": "Warning",
+    "stopped": "Stopped",
+    "temperature": "Temperature",
+    "humidity": "Humidity",
+    "electric_flow": "Electric flow",
+    "status": "Status",
+    "setpoint": "Setpoint",
+    "high": "High",
+    "normal": "Normal",
+    "with_warning": "With warning",
+    "production_by_product_week": "Production by product — week",
+    "daily_production_last_7": "Daily production — last 7 days",
+    "general_summary": "General summary",
+    "last_update": "Last update",
+    "loading_title": "Loading production",
+    "loading_content": "Preparing ovens dashboard",
+    "ovens_total": "Total ovens",
+    "running_label": "Running",
+    "active_label": "Active",
+    "warning_label": "With warning",
+    "in_observation": "Under observation",
+    "stopped_label": "Stopped",
+    "inactives": "Inactive"
   }
 }
