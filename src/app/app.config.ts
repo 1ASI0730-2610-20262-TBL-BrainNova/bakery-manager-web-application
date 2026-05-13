@@ -3,6 +3,7 @@ import { provideRouter } from '@angular/router';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 import { routes } from './app.routes';
 import { authenticationInterceptor } from './iam/infrastructure/interceptors/authentication.interceptor';
@@ -16,5 +17,6 @@ export const appConfig: ApplicationConfig = {
       loader: provideTranslateHttpLoader({ prefix: './i18n/', suffix: '.json' }),
       fallbackLang: 'en',
     }),
-  ],
+    provideCharts(withDefaultRegisterables()),
+  ]
 };

@@ -121,5 +121,13 @@
       "unidades": "unidades",
       "gramos": "gramos"
     }
+  },
+  "monitoring": {
+    "dashboard": {
+      "online-sensors": "Sensores en Línea",
+      "average-temperature": "Temp. Promedio",
+      "active-alerts": "Alertas Activas",
+      "last-reading": "Última Lectura"
+    }
   }
 }
