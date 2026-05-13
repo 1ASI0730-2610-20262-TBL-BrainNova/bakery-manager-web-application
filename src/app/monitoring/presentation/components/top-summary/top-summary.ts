@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { MonitoringStore } from '../../../application/monitoring.store';
 import { SensorType } from '../../../domain/model/sensor-type.value-object';
 import { MatCard, MatCardContent } from '@angular/material/card';
@@ -19,15 +19,15 @@ export class TopSummary {
   protected sensorCount = this.store.sensorCount;
   protected alertCount = this.store.alertCount;
 
-  protected numberOfActiveSensors = this.store.sensors().filter(
-    (sensor) => sensor.status === SensorStatus.ACTIVE,
-  ).length;
+  protected numberOfActiveSensors = computed(
+    () => this.sensors().filter((sensor) => sensor.status === SensorStatus.ACTIVE).length,
+  );
   protected averageTemperature = () => {
     let temperatureSensors = this.sensors().filter(
       (sensor) => sensor.type === SensorType.TEMPERATURE,
     );
     if (temperatureSensors.length === 0) return 0;
-    let sum = temperatureSensors.reduce((acc, sensor) => acc + 99, 0);
+    let sum = temperatureSensors.reduce((acc, sensor) => acc + 121, 0);
     return sum / temperatureSensors.length;
   };
   protected lastReadingDate = new Date().toDateString();
