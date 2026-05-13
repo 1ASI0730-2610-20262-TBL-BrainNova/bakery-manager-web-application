@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { Home } from './shared/presentation/views/home/home';
-import { Production } from './shared/presentation/views/production/production';
+import { Production } from '../production/presentation/views/production/production';
 
 const about = () => import('./shared/presentation/views/about/about').then((m) => m.About);
 const pageNotFound = () =>
