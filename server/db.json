@@ -2,19 +2,16 @@
   "users": [
     {
       "id": 1,
-      "firstName": "Carlos",
-      "lastName": "Mendoza",
-      "email": "carlos@bakery.com",
-      "password": "12345678",
-      "role": "owner"
-    },
+      "username": "admin@bakery.com",
+      "password": "12345678"
+    }
+  ],
+  "authentication": [
     {
-      "id": 2,
-      "firstName": "Ana",
-      "lastName": "Quispe",
-      "email": "ana@bakery.com",
+      "id": 1,
+      "username": "admin@bakery.com",
       "password": "12345678",
-      "role": "operational-staff"
+      "token": "fake-jwt-token-bakery-2026"
     }
   ]
 }

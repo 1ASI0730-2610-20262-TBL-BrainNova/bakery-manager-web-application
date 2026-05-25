@@ -1,38 +1,25 @@
 import { Routes } from '@angular/router';
 import { Home } from './shared/presentation/views/home/home';
-import { LoginPageComponent } from './IAM/interfaces/pages/login-page/login-page.component';
-import { SignUpComponent } from './IAM/interfaces/components/sign-up/sign-up.component';
-import { authenticationGuard } from './IAM/infrastructure/guards/authentication.guard';
+import { iamGuard } from './iam/infrastructure/iam.guard';
 
 const about = () => import('./shared/presentation/views/about/about').then((m) => m.About);
 const pageNotFound = () =>
   import('./shared/presentation/views/page-not-found/page-not-found').then((m) => m.PageNotFound);
+const iamRoutes = () => import('./iam/presentation/iam.routes').then((m) => m.iamRoutes);
+
+// TODO: importa tu ruta de inventory cuando esté lista
+// const inventoryRoutes = () => import('./inventory/presentation/inventory.routes').then(m => m.inventoryRoutes);
 
 const baseTitle = 'BakeryManager';
 
+/**
+ * Root route configuration that composes bounded-context routes.
+ */
 export const routes: Routes = [
-
-  { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
-
-  // Rutas IAM
-  { path: 'sign-in', component: LoginPageComponent, title: `${baseTitle} - Sign In` },
-  { path: 'sign-up', component: SignUpComponent, title: `${baseTitle} - Sign Up` },
-
-  // Rutas protegidas
-  {
-    path: 'home',
-    component: Home,
-    canActivate: [authenticationGuard],
-    title: `${baseTitle} - Home`,
-  },
-  {
-    path: 'about',
-    loadComponent: about,
-    canActivate: [authenticationGuard],
-    title: `${baseTitle} - About`,
-  },
-
-  // TODO: Add more paths here!
-
+  { path: 'home', component: Home, title: `${baseTitle} - Home`, canActivate: [iamGuard] },
+  { path: 'about', loadComponent: about, title: `${baseTitle} - About` },
+  // { path: 'inventory', loadChildren: inventoryRoutes, canActivate: [iamGuard] },
+  { path: 'iam', loadChildren: iamRoutes },
+  { path: '', redirectTo: '/iam/sign-in', pathMatch: 'full' },
   { path: '**', loadComponent: pageNotFound, title: `${baseTitle} - Page Not Found` },
 ];

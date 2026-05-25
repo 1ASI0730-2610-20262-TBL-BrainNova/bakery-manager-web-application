@@ -5,13 +5,13 @@ import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { routes } from './app.routes';
-import { authenticationInterceptor } from './IAM/infrastructure/interceptors/authentication.interceptor';
+import { iamInterceptor } from './iam/infrastructure/iam.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([authenticationInterceptor])),
+    provideHttpClient(withInterceptors([iamInterceptor])),
     provideTranslateService({
       loader: provideTranslateHttpLoader({ prefix: './i18n/', suffix: '.json' }),
       fallbackLang: 'en',
