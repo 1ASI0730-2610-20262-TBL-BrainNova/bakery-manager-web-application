@@ -47,8 +47,8 @@ export class InventoryManagement implements OnInit {
   loadInventory(): void {
     this.inventoryService.getAllItems().subscribe({
       next: (items) => {
-        this.inventoryItems = items;
-        console.log('Inventario cargado:', items);
+        this.inventoryItems = [...items];
+        this.cdr.detectChanges();
       },
       error: (err) => console.error('Error cargando el inventario:', err),
     });
@@ -75,7 +75,6 @@ export class InventoryManagement implements OnInit {
 
     this.inventoryService.createItem(itemToSend as any).subscribe({
       next: (response) => {
-        console.log('¡Éxito en la nube!:', response);
         this.loadInventory();
         this.isFormVisible = false;
 
@@ -88,7 +87,6 @@ export class InventoryManagement implements OnInit {
       },
       error: (err) => {
         console.error('Error detallado:', err);
-        alert('Error: no sé puede subir a la nube');
       },
     });
   }
