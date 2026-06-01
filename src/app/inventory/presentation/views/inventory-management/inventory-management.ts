@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { InventoryService } from '../../../infrastructure/inventory.services';
 import { InventoryItem } from '../../../domain/model/inventory-item';
 
@@ -17,6 +18,7 @@ import { InventoryItemList } from '../../components/inventory-item-list/inventor
     TranslateModule,
     MatButtonModule,
     MatIconModule,
+    MatSnackBarModule,
     InventoryItemForm,
     InventoryItemList,
   ],
@@ -30,6 +32,7 @@ export class InventoryManagement implements OnInit {
   private inventoryService = inject(InventoryService);
   private translate = inject(TranslateService);
   private cdr = inject(ChangeDetectorRef);
+  private snackBar = inject(MatSnackBar);
 
   constructor() {
     this.translate.onLangChange.subscribe(() => {
@@ -55,6 +58,10 @@ export class InventoryManagement implements OnInit {
     this.isFormVisible = !this.isFormVisible;
   }
 
+  getLowStockCount(): number {
+    return this.inventoryItems.filter((item) => item.quantity <= item.minStock).length;
+  }
+
   addItem(item: any): void {
     if (!item) return;
 
@@ -71,6 +78,13 @@ export class InventoryManagement implements OnInit {
         console.log('¡Éxito en la nube!:', response);
         this.loadInventory();
         this.isFormVisible = false;
+
+        this.snackBar.open('Nuevo insumo añadido', 'Cerrar', {
+          duration: 3000,
+          horizontalPosition: 'end',
+          verticalPosition: 'bottom',
+          panelClass: ['custom-snackbar'],
+        });
       },
       error: (err) => {
         console.error('Error detallado:', err);

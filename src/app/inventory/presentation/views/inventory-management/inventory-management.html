@@ -1,8 +1,20 @@
 <div class="inventory-container">
-  <header class="inventory-header">
-    <span class="main-title">BakeryManager</span>
-    <span class="sub-title">By BrainNova</span>
-  </header>
+  <div class="brand-hero-banner">
+    <div class="banner-title-group">
+      <h1>BakeryManager</h1>
+      <p class="subtitle">By BrainNova Development Team</p>
+    </div>
+    <div class="banner-stats">
+      <div class="stat-pill">
+        <span class="stat-label">Active Supplies</span>
+        <span class="stat-number">{{ inventoryItems.length }}</span>
+      </div>
+      <div class="stat-pill alert-pill">
+        <span class="stat-label">Low Stock Alerts</span>
+        <span class="stat-number">{{ getLowStockCount() }}</span>
+      </div>
+    </div>
+  </div>
 
   <main class="inventory-layout">
     <div class="form-section" *ngIf="isFormVisible">

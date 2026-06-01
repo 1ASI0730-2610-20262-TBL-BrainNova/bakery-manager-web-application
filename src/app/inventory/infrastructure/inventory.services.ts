@@ -7,8 +7,7 @@ import { InventoryItem } from '../domain/model/inventory-item';
   providedIn: 'root',
 })
 export class InventoryService {
-  // Esta es tu nube real en MockAPI
-  private readonly API_URL = 'https://6a01e5cc36fb6ad04de1f2b1.mockapi.io/api/v1/inventory';
+  private readonly API_URL = 'https://6a0b015f21e4456256970d96.mockapi.io/api/v1/InventoryItem ';
 
   constructor(private http: HttpClient) {}
 

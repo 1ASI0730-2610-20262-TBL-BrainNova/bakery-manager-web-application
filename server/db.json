@@ -1,0 +1,107 @@
+[
+  {
+    "name": "Harina de Trigo Especial",
+    "description": "Harina de fuerza ideal para panificación artesanal",
+    "quantity": 50,
+    "unit": "kg",
+    "minStock": 15
+  },
+  {
+    "name": "Levadura Fresca",
+    "description": "Levadura en bloque para fermentación de masas prensadas",
+    "quantity": 12,
+    "unit": "kg",
+    "minStock": 5
+  },
+  {
+    "name": "Azúcar Blanca Refinada",
+    "description": "Insumo para endulzar masas de pastelería y bizcochos",
+    "quantity": 30,
+    "unit": "kg",
+    "minStock": 10
+  },
+  {
+    "name": "Mantequilla sin Sal",
+    "description": "Mantequilla premium para hojaldres y croissants",
+    "quantity": 25,
+    "unit": "kg",
+    "minStock": 8
+  },
+  {
+    "name": "Sal Industrial Marítima",
+    "description": "Sal fina para control de fermentación y sabor",
+    "quantity": 15,
+    "unit": "kg",
+    "minStock": 5
+  },
+  {
+    "name": "Huevos de Granja",
+    "description": "Huevos frescos para brillo y consistencia de masas",
+    "quantity": 180,
+    "unit": "unidades",
+    "minStock": 60
+  },
+  {
+    "name": "Leche Entera Pastelera",
+    "description": "Leche líquida para enriquecer masas suaves",
+    "quantity": 24,
+    "unit": "litros",
+    "minStock": 8
+  },
+  {
+    "name": "Esencia de Vainilla",
+    "description": "Aromatizante concentrado para repostería fina",
+    "quantity": 5,
+    "unit": "litros",
+    "minStock": 2
+  },
+  {
+    "name": "Chocolate Bitter 60%",
+    "description": "Gotas de chocolate para muffins y panetones",
+    "quantity": 10,
+    "unit": "kg",
+    "minStock": 4
+  },
+  {
+    "name": "Polvo de Hornear",
+    "description": "Agente leudante químico para queques y bizcochuelos",
+    "quantity": 8,
+    "unit": "kg",
+    "minStock": 3
+  },
+  {
+    "name": "Premix Pan de Molde",
+    "description": "Mezcla preparada para producción rápida de pan de molde",
+    "quantity": 4,
+    "unit": "kg",
+    "minStock": 10
+  },
+  {
+    "name": "Manteca Vegetal",
+    "description": "Grasa para dar suavidad y conservación al pan común",
+    "quantity": 20,
+    "unit": "kg",
+    "minStock": 6
+  },
+  {
+    "name": "Ajonjolí Tostado",
+    "description": "Semillas para decoración superior de panes de hamburguesa",
+    "quantity": 3,
+    "unit": "kg",
+    "minStock": 1
+  },
+  {
+    "name": "Pasas Rubias",
+    "description": "Fruta deshidratada para panes dulces y bizcochos",
+    "quantity": 2,
+    "unit": "kg",
+    "minStock": 5
+  },
+  {
+    "name": "Agua Purificada",
+    "description": "Agua filtrada para control térmico de masas",
+    "quantity": 500,
+    "unit": "litros",
+    "minStock": 100
+  }
+]
