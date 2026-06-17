@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { InventoryItem } from '../domain/model/inventory-item';
@@ -7,22 +7,15 @@ import { InventoryItem } from '../domain/model/inventory-item';
   providedIn: 'root',
 })
 export class InventoryService {
-  // Esta es tu nube real en MockAPI
-  private readonly API_URL = 'https://6a01e5cc36fb6ad04de1f2b1.mockapi.io/api/v1/inventory';
+  private http = inject(HttpClient);
 
-  constructor(private http: HttpClient) {}
+  private readonly URL_DIRECTA = 'https://6a0b015f21e4456256970d96.mockapi.io/api/v1/inventory';
 
-  /**
-   * Obtiene todos los insumos desde MockAPI
-   */
   getAllItems(): Observable<InventoryItem[]> {
-    return this.http.get<InventoryItem[]>(this.API_URL);
+    return this.http.get<InventoryItem[]>(this.URL_DIRECTA);
   }
 
-  /**
-   * Crea un nuevo insumo y lo sube a la nube de MockAPI
-   */
   createItem(item: Omit<InventoryItem, 'id'>): Observable<InventoryItem> {
-    return this.http.post<InventoryItem>(this.API_URL, item);
+    return this.http.post<InventoryItem>(this.URL_DIRECTA, item);
   }
 }

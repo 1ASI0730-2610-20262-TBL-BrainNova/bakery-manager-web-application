@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { Home } from './shared/presentation/views/home/home';
-import { iamGuard } from './iam/infrastructure/iam.guard';
-
+import { InventoryManagement } from './inventory/presentation/views/./inventory-management/inventory-management';
 const about = () => import('./shared/presentation/views/about/about').then((m) => m.About);
 const pageNotFound = () =>
   import('./shared/presentation/views/page-not-found/page-not-found').then((m) => m.PageNotFound);
@@ -16,10 +15,29 @@ const baseTitle = 'BakeryManager';
  * Root route configuration that composes bounded-context routes.
  */
 export const routes: Routes = [
-  { path: 'home', component: Home, title: `${baseTitle} - Home`, canActivate: [iamGuard] },
-  { path: 'about', loadComponent: about, title: `${baseTitle} - About` },
-  // { path: 'inventory', loadChildren: inventoryRoutes, canActivate: [iamGuard] },
-  { path: 'iam', loadChildren: iamRoutes },
-  { path: '', redirectTo: '/iam/sign-in', pathMatch: 'full' },
-  { path: '**', loadComponent: pageNotFound, title: `${baseTitle} - Page Not Found` },
+  {
+    path: 'home',
+    component: Home,
+    title: `${baseTitle} - Home`,
+  },
+  {
+    path: 'about',
+    loadComponent: about,
+    title: `${baseTitle} - About`,
+  },
+  {
+    path: 'inventory',
+    component: InventoryManagement,
+    title: `${baseTitle} - Inventory Management`,
+  },
+  {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full',
+  },
+  {
+    path: '**',
+    loadComponent: pageNotFound,
+    title: `${baseTitle} - Page Not Found`,
+  },
 ];
