@@ -1,4 +1,4 @@
-import { computed, Injectable, Signal, signal } from '@angular/core';
+import { computed, DestroyRef, inject, Injectable, Signal, signal } from '@angular/core';
 import { ProductionBatch } from '../domain/model/production-batch.entity';
 import { BatchStatus } from '../domain/model/batch-status.value-object';
 import { ProductionReport } from '../domain/model/production-report.entity';
@@ -50,6 +50,8 @@ export class ProductionStore {
     return closed === 0 ? 0 : Math.round((completed / closed) * 100);
   });
 
+  private readonly destroyRef = inject(DestroyRef);
+
   constructor(private productionApi: ProductionApi) {
     this.loadBatches();
   }
@@ -87,7 +89,7 @@ export class ProductionStore {
     });
     this.productionApi
       .createBatch(batch)
-      .pipe(takeUntilDestroyed())
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (created) => this.batchesSignal.update((list) => [created, ...list]),
         error: (err) => this.errorSignal.set(this.formatError(err, 'Failed to create batch.')),
@@ -97,7 +99,7 @@ export class ProductionStore {
   /** Starts a batch via PATCH /api/v1/batches/{id}/start (US-83). */
   startBatch(id: number): void {
     this.productionApi.startBatch(id)
-      .pipe(takeUntilDestroyed())
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (updated) => this.batchesSignal.update((list) => list.map((b) => b.id === id ? updated : b)),
         error: (err) => this.errorSignal.set(this.formatError(err, 'Failed to start batch.')),
@@ -115,7 +117,7 @@ export class ProductionStore {
   /** Completes a batch via PATCH /api/v1/batches/{id}/complete (US-85). */
   completeBatch(id: number): void {
     this.productionApi.completeBatch(id)
-      .pipe(takeUntilDestroyed())
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (updated) => this.batchesSignal.update((list) => list.map((b) => b.id === id ? updated : b)),
         error: (err) => this.errorSignal.set(this.formatError(err, 'Failed to complete batch.')),
@@ -125,7 +127,7 @@ export class ProductionStore {
   /** Cancels a batch via PATCH /api/v1/batches/{id}/cancel (US-86). */
   cancelBatch(id: number): void {
     this.productionApi.cancelBatch(id)
-      .pipe(takeUntilDestroyed())
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (updated) => this.batchesSignal.update((list) => list.map((b) => b.id === id ? updated : b)),
         error: (err) => this.errorSignal.set(this.formatError(err, 'Failed to cancel batch.')),
@@ -156,7 +158,7 @@ export class ProductionStore {
     this.loadingSignal.set(true);
     this.productionApi
       .getBatches()
-      .pipe(takeUntilDestroyed())
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (batches) => {
           this.batchesSignal.set(batches);
