@@ -8,6 +8,7 @@ const dashboard = () => import('./views/dashboard/dashboard').then((m) => m.Dash
  */
 export const monitoringRoutes: Routes = [
   { path: 'dashboard', loadComponent: dashboard },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   //{ path: 'sensors', loadComponent: undefined },
   //{ path: 'incidents', loadComponent: undefined },
   //{ path: 'alerts', loadComponent: undefined }

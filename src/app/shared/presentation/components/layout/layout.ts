@@ -34,9 +34,9 @@ import { LanguageSwitcher } from '../language-switcher/language-switcher';
 export class Layout {
   options = signal([
     { link: '/home', label: 'option.dashboard', icon: 'bar_chart' },
-    { link: '/iot', label: 'option.iot', icon: 'sensors' },
-    { link: '/incident', label: 'option.incident', icon: 'notification_important' },
+    { link: '/monitoring', label: 'option.iot', icon: 'sensors' },
     { link: '/production', label: 'option.production', icon: 'precision_manufacturing' },
+    { link: '/inventory', label: 'option.inventory', icon: 'inventory_2' },
   ]);
 
   showShell = signal(true);
